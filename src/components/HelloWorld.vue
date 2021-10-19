@@ -1,9 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p @click="$store.commit('add')">counter: {{$store.state.counter}}</p>
-    <p @click="$store.dispatch('add')">async counter: {{$store.state.counter}}</p>
-    <p>{{$store.getters.doubleCounter}}</p>
+    <p @click="$store.commit('add')">counter: {{ $store.state.counter }}</p>
+    <p @click="$store.dispatch('add')">
+      async counter: {{ $store.state.counter }}
+    </p>
+    <p>{{ $store.getters.doubleCounter }}</p>
     <!-- 组件通信 -->
     <!-- <Communication></Communication> -->
     <!-- 表单 -->
@@ -16,23 +18,23 @@
 </template>
 
 <script>
-import Communication from '@/components/communication';
-import FormExample from '@/components/form';
-import SlotExample from '@/components/slots';
-import TreeExample from '@/components/recursion';
+import Communication from "@/components/communication";
+import FormExample from "@/components/form";
+import SlotExample from "@/components/slots";
+import TreeExample from "@/components/recursion";
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
   components: {
     Communication,
     FormExample,
     SlotExample,
-    TreeExample
+    TreeExample,
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
