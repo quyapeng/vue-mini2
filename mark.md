@@ -29,3 +29,10 @@ new Vue({
 ```
 <router-view></router-view>
 ```
+
+## vuex 核心概念
+
+    state状态，数据
+    mutations 更改状态的函数
+    actions异步操作
+    store包含以上概念的容器
