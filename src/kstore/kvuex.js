@@ -6,53 +6,52 @@ class Store {
   constructor(options) {
     // 保存选项
     this.$options = options;
-    
+
     this._mutations = options.mutations;
     this._actions = options.actions;
     // api: state
     // 用户传入的state选项应该是响应式， 可以参考router中-->defineReactive
     this._vm = new Vue({
-      data(){
+      data() {
         return {
           // 不希望$$state被代理，所以加两个$
-          $$state: options.state
-        }
-      }
-    })
+          $$state: options.state,
+        };
+      },
+    });
 
     this.commit = this.commit.bind(this);
     this.dispatch = this.dispatch.bind(this);
-
   }
 
   // 存取器
-  get state(){
+  get state() {
     return this._vm._data.$$state;
   }
 
-  set state(){
+  set state(v) {
     // 不允许直接修改state
-    console.warn('请使用replaceState()去修改状态');
+    console.warn("请使用replaceState()去修改状态");
   }
 
   // 固定修改state
 
-  commit(type, payload){
+  commit(type, payload) {
     // 匹配type对应的mutation
     const entry = this._mutations[type];
-    if(!entry){
-      console.error('error');
-      return
+    if (!entry) {
+      console.error("error");
+      return;
     }
     entry(this.state, payload);
   }
 
-  dispatch(type, payload){
+  dispatch(type, payload) {
     // 匹配type对应的mutation
     const entry = this._actions[type];
-    if(!entry){
-      console.error('error');
-      return
+    if (!entry) {
+      console.error("error");
+      return;
     }
     // 此处的上下文？  { commit,dispatch}
     return entry(this, payload);
