@@ -59,3 +59,30 @@ mutations:{
   action 类似于 mutation 不同于：
   1.action 提交的是 mutation,而不是直接变更状态。
   2.action 可以包含任意异步操作
+
+## 模块化
+
+modules: {
+// user
+// 访问变量为 this.$store.state.user.islogin, this.$store.commit('user/login'),以此类推
+},
+缺点：访问太长
+解决方案：映射
+mapState()
+mapMutation()
+mapAction()
+通过这些映射方法，可以少敲几个字，避免对\$store 直接访问
+state 修改：
+computed: {
+...mapState('user', ['islogin'])
+}
+
+<p v-if="!islogin">登录</p>
+action修改：
+method:{
+  ...mapActions(‘user’，['login', 'logout']), // 这种写法，调用方式为this['login']().如果命名有重复，则需要下面的写法来规避
+  ...mapActions(['user/login', 'user/logout']),
+  login(){
+    this['user/login']('admin').then(...)
+  }
+}

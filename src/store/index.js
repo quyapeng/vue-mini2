@@ -6,6 +6,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  // namespace: true, // 设置独立命名空间，避免命名冲突
   // state是响应式对象
   state: {
     counter: 0,
@@ -41,5 +42,7 @@ export default new Vuex.Store({
       });
     },
   },
-  modules: {},
+  modules: {
+    // user // 访问变量为this.$store.state.user.islogin, this.$store.commit('user/login'),以此类推
+  },
 });
