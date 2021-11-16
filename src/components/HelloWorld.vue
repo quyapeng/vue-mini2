@@ -5,7 +5,7 @@
     <p @click="$store.dispatch('add')">
       async counter: {{ $store.state.counter }}
     </p>
-    <p>{{ $store.getters.doubleCounter }}</p>
+    <!-- <p>{{ $store.getters.doubleCounter }}</p> -->
     <!-- 组件通信 -->
     <!-- <Communication></Communication> -->
     <!-- 表单 -->

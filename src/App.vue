@@ -5,12 +5,12 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <p>{{ $store.state.counter }}</p>
+    <!-- <p>{{ $store.state.counter }}</p> -->
     <!-- <Counter /> -->
     <!-- 路由出口 -->
     <!-- 利用vue响应式：current -->
-    <p>状态{{ $store.state.islogin }}</p>
-    <button @click="changeState">test</button>
+    <!-- <p>状态{{ $store.state.islogin }}</p>
+    <button @click="changeState">test</button> -->
     <router-view />
   </div>
 </template>
