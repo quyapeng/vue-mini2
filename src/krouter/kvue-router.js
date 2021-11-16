@@ -1,5 +1,5 @@
 let Vue;
-// import Home from "../views/Home";
+import View from "krouter-view";
 
 // vue插件编写
 // 实现一个install方法
@@ -11,16 +11,31 @@ class VueRouter {
     // 当前current应该是响应式的
     // 给指定对象响应式属性
     // 给this上添加一个current属性，将来所有跟current有依赖关系的方法都会重新执行，比如render
-    Vue.util.defineReactive(
-      this,
-      "current",
-      window.location.hash.slice(1) || "/"
-    );
+    // Vue.util.defineReactive(
+    //   this,
+    //   "current",
+    //   window.location.hash.slice(1) || "/"
+    // );
+    this.current = window.location.hash.slice(1) || "/";
+    Vue.util.defineReactive(this, "match", []);
+    this.match();
+    // match方法可以地柜便利路由表，获得匹配关系数组
+
     // this.current = "/";
     // 监控hashchange
     window.addEventListener("hashchange", () => {
       this.current = window.location.hash.slice(1);
     });
+
+    // c创建一个路由映射表
+    this.routeMap = {};
+    options.routes.forEach((route) => {
+      this.routeMap[route.path] = route;
+    });
+  }
+
+  onHashChange() {
+    this.current = window.location.hash.slice(1);
   }
 }
 
@@ -66,23 +81,7 @@ VueRouter.install = function(_Vue) {
       );
     },
   });
-  Vue.component("router-view", {
-    render(h) {
-      // 可以传入一个组件直接渲染
-      // 根据url的hash部分动态匹配这个要渲染的组件
-      console.log(this.$router.$options.routes);
-      console.log(this.$router.current);
-      let component = null;
-      const route = this.$router.$options.routes.find(
-        (r) => r.path === this.$router.current
-      );
-      if (route) {
-        component = route.component;
-      }
-
-      return h(component);
-    },
-  });
+  Vue.component("router-view", View);
 };
 
 export default VueRouter;
