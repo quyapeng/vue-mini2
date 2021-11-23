@@ -19,9 +19,6 @@
         ></div>
       </div>
     </div>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -66,9 +63,9 @@ export default {
         // x: 510,
         // y: 128,
         // z: 0,
-        x: 1,
-        y: 1,
-        z: -6,
+        x: -4,
+        y: 0,
+        z: 3,
       },
       scene: null,
       camera: null,
@@ -157,12 +154,8 @@ export default {
       const currentColor = new Color(this.colorAry[index]);
       this.scene.traverse((child) => {
         if (child.isMesh) {
-          // console.log(child.name);
+          // console.log(child);
           child.material.color.set(currentColor);
-          // if (child.name.includes("door_")) {
-          //   console.log(child);
-          //   child.material.color.set(currentColor);
-          // }
         }
       });
     },
