@@ -1,5 +1,6 @@
 let Vue;
-import View from "krouter-view";
+import View from "./krouter-view";
+import Link from "./krouter-link";
 
 // vue插件编写
 // 实现一个install方法
@@ -19,8 +20,7 @@ class VueRouter {
     this.current = window.location.hash.slice(1) || "/";
     Vue.util.defineReactive(this, "match", []);
     this.match();
-    // match方法可以地柜便利路由表，获得匹配关系数组
-
+    // match方法可以 地柜 遍历路由表，获得匹配关系数组
     // this.current = "/";
     // 监控hashchange
     window.addEventListener("hashchange", () => {
@@ -59,28 +59,18 @@ VueRouter.install = function(_Vue) {
   });
   // 2.注册两个全局组件 router-link  router-view
   // 运行时版本，template不支持。只能使用render
-  Vue.component("router-link", {
-    props: {
-      to: {
-        type: String,
-        required: true,
-      },
-    },
-    render(h) {
-      // h就是createElement()
-      // 作用：返回一个虚拟dom
-      // 获取插槽内容  this.$slots.default
-      return h(
-        "a",
-        {
-          attrs: {
-            href: `#${this.to}`,
-          },
-        },
-        this.$slots.default
-      );
-    },
-  });
+  // Vue.component("router-link", {
+  //   template:`` // 只有运行时版本，无法处理tempalte,只能使用render
+  //   render(h){
+  //     return h('a', 'router-link')
+  //   }
+  // });
+  // Vue.component("router-view", {
+  //   render(h){
+  //     return h('div', 'router-view')
+  //   }
+  // });
+  Vue.component("router-link", Link);
   Vue.component("router-view", View);
 };
 

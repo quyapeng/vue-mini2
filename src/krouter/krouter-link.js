@@ -1,10 +1,23 @@
 export default {
+  props: {
+    to: {
+      type: String,
+      required: true,
+    },
+  },
   render(h) {
-    // 获取path对应的component
-    const { routeMap, current } = this.$router;
-    // console.log(routeMap, current);
-    const component = routeMap[current].component || null;
-    return h(component);
+    // h就是createElement()
+    // 作用：返回一个虚拟dom
+    // 获取插槽内容  this.$slots.default
+    return h(
+      "a",
+      {
+        attrs: {
+          href: `#${this.to}`,
+        },
+      },
+      this.$slots.default
+    );
   },
 };
 

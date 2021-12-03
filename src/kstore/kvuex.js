@@ -22,6 +22,8 @@ class Store {
 
     this.commit = this.commit.bind(this);
     this.dispatch = this.dispatch.bind(this);
+
+    //  getter 接口如何暴露？动态值？
   }
 
   // 存取器

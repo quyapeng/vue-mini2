@@ -3,7 +3,10 @@
     <div id="nav">
       <!-- 路由跳转连接 -->
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <!-- <router-link to="/about">About</router-link> -->
+
+      <router-link to="/user/info"> /user/info</router-link>
+      <router-link to="/user">User</router-link>
     </div>
     <!-- <p>{{ $store.state.counter }}</p> -->
     <!-- <Counter /> -->
@@ -11,6 +14,7 @@
     <!-- 利用vue响应式：current -->
     <!-- <p>状态{{ $store.state.islogin }}</p>
     <button @click="changeState">test</button> -->
+    <!-- 占位符 -->
     <router-view />
   </div>
 </template>

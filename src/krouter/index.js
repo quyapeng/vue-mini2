@@ -24,12 +24,31 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    // children: [
+    //   {
+    //     path: "/about/info",
+    //     component: {
+    //       render(h) {
+    //         return h("div", "嵌套一个info");
+    //       },
+    //     },
+    //   },
+    // ],
+  },
+  {
+    path: "/user",
+    name: "User",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/User.vue"),
     children: [
       {
-        path: "/about/info",
+        path: "/user/info",
         component: {
           render(h) {
-            return h("div", "info");
+            return h("div", "嵌套一个info");
           },
         },
       },

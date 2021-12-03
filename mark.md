@@ -86,3 +86,8 @@ method:{
     this['user/login']('admin').then(...)
   }
 }
+
+# 嵌套路由
+
+1. router-view 深度标记
+2. 路由匹配时获取代表深度层级的 matched 数组
